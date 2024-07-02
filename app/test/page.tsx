@@ -1,6 +1,7 @@
 "use client";
 
 import { createClient } from "@/utils/supabase/client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -9,11 +10,33 @@ export default function Page() {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await supabase.from("notes").select();
-      setNotes(data);
+      const res = await supabase.from("orders").select(
+        `
+          id,
+          user_id,
+          product,
+          amount,
+          users (
+            id,
+            email,
+            lastname,
+            firstname
+          )
+        `
+      );
+      setNotes(res.data);
+
+      console.log("res", res);
     };
+
     getData();
   }, []);
 
-  return <pre>{JSON.stringify(notes, null, 2)}</pre>;
+  return (
+    <pre>
+      <Link href={"/"}>home</Link>
+
+      <div>{JSON.stringify(notes, null, 2)}</div>
+    </pre>
+  );
 }

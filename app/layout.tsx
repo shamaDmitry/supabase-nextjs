@@ -1,5 +1,9 @@
-import { GeistSans } from "geist/font/sans";
+import { Bricolage_Grotesque } from "next/font/google";
+import { Space_Mono } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+import Footer from "@/components/footer";
+import Navigation from "@/components/navigation";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -11,17 +15,30 @@ export const metadata = {
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
+const fontHeading = Bricolage_Grotesque({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading",
+});
+
+const fontBody = Space_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+  weight: "400",
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
-      <body className="bg-background text-foreground">
-        <main className="min-h-screen flex flex-col items-center">
-          {children}
-        </main>
+    <html lang="en">
+      <body
+        className={cn("antialiased", fontHeading.variable, fontBody.variable)}
+      >
+        {children}
       </body>
     </html>
   );
