@@ -14,6 +14,7 @@
     "autoprefixer": "10.4.17",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
     "geist": "^1.2.1",
     "lucide-react": "^0.399.0",
     "next": "latest",
@@ -23,12 +24,14 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "3.4.1",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "5.3.3"
+    "typescript": "5.3.3",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
+    "@types/uuid": "^10.0.0",
     "encoding": "^0.1.13"
   }
 }

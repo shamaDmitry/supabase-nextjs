@@ -2,8 +2,6 @@ import { Bricolage_Grotesque } from "next/font/google";
 import { Space_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Footer from "@/components/footer";
-import Navigation from "@/components/navigation";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`

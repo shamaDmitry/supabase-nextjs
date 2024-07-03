@@ -1,8 +1,17 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import AuthButton from "@/components/auth-button";
 import Logo from "./logo";
+import { uuid } from "@/lib/utils";
+
+const menu = [
+  {
+    id: uuid(),
+    href: "/orders",
+    text: "orders",
+  },
+  { id: uuid(), href: "/test", text: "test" },
+];
 
 export default async function Navigation() {
   const supabase = createClient();
@@ -17,9 +26,17 @@ export default async function Navigation() {
 
         {user && (
           <div className="mx-auto flex items-center gap-3">
-            <Link href="orders" className="capitalize font-bold">
-              orders
-            </Link>
+            {menu.map((menuItem) => {
+              return (
+                <Link
+                  key={menuItem.id}
+                  href={`${menuItem.href}`}
+                  className="capitalize font-bold"
+                >
+                  {menuItem.text}
+                </Link>
+              );
+            })}
           </div>
         )}
 
