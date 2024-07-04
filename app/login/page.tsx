@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
+import { GithubButton } from "./github-button";
 
 export default function Login({
   searchParams,
@@ -54,8 +55,8 @@ export default function Login({
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center my-12">
-      <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
+    <div className="min-h-screen flex flex-col items-center justify-center my-12">
+      <div className="flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
         <Link
           href="/"
           className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
@@ -77,6 +78,10 @@ export default function Login({
           Back
         </Link>
 
+        <GithubButton />
+
+        <hr className="my-4 border-secondary" />
+
         <form className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
           <label className="text-md" htmlFor="email">
             Email
@@ -97,20 +102,25 @@ export default function Login({
             placeholder="••••••••"
             required
           />
-          <SubmitButton
-            formAction={signIn}
-            className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
-            pendingText="Signing In..."
-          >
-            Sign In
-          </SubmitButton>
-          <SubmitButton
-            formAction={signUp}
-            className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
-            pendingText="Signing Up..."
-          >
-            Sign Up
-          </SubmitButton>
+
+          <div className="flex-col flex gap-6">
+            <SubmitButton
+              formAction={signIn}
+              className="bg-green-700 rounded-md px-4 py-2 text-foreground"
+              pendingText="Signing In..."
+            >
+              Sign In
+            </SubmitButton>
+
+            <SubmitButton
+              formAction={signUp}
+              className="border border-foreground/20 rounded-md px-4 py-2 text-foreground"
+              pendingText="Signing Up..."
+            >
+              Sign Up
+            </SubmitButton>
+          </div>
+
           {searchParams?.message && (
             <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
               {searchParams.message}
