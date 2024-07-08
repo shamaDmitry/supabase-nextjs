@@ -2,10 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/client";
+import { ComponentProps } from "react";
 
-interface Props {
+type Props = ComponentProps<"button"> & {
   text?: string;
-}
+};
 
 export function GithubButton({ text = "Sign in with Github" }: Props) {
   const supabase = createClient();
@@ -17,15 +18,12 @@ export function GithubButton({ text = "Sign in with Github" }: Props) {
         redirectTo: `${process.env.NEXT_PUBLIC_HOST}/auth/callback`,
       },
     });
-
-    console.log("data", data);
-    console.log("error", error);
   };
 
   return (
     <Button
       variant={"secondary"}
-      onClick={signInWithGithub}
+      onClick={() => signInWithGithub()}
       className="flex items-center gap-2"
     >
       <svg

@@ -10,7 +10,6 @@ const menu = [
     href: "/orders",
     text: "orders",
   },
-  { id: uuid(), href: "/test", text: "test" },
 ];
 
 export default async function Navigation() {

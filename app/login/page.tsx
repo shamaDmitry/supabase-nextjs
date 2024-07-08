@@ -51,7 +51,7 @@ export default function Login({
       return redirect(`/login?message=${error}`);
     }
 
-    return redirect("/login?message=Check email to continue sign in process");
+    return redirect("/orders");
   };
 
   return (

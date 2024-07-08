@@ -19,7 +19,20 @@ const AuthButton: FC<AuthButtonProps> = ({ user }) => {
 
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {user.email}!
+      <Link href="/profile" className="hover:underline">
+        Hey, {user.email}!
+      </Link>
+
+      {user.user_metadata.avatar_url && (
+        <div className="size-8 border rounded-full shadow overflow-hidden flex justify-center items-center">
+          <img
+            src={user.user_metadata.avatar_url}
+            alt={user.user_metadata.email}
+            className="w-full block"
+          />
+        </div>
+      )}
+
       <form action={signOut}>
         <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
           Logout

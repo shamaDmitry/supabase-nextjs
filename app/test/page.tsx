@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/client";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -14,7 +13,7 @@ export default function Page() {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await supabase.from("orders").select("*, customers(*)");
+      const res = await supabase.from("auth.users").select("*");
 
       setOrders(res.data);
 
@@ -36,7 +35,7 @@ export default function Page() {
         Home
       </Button>
 
-      <div>orders {JSON.stringify(orders, null, 2)}</div>
+      <div>data {JSON.stringify(orders, null, 2)}</div>
     </pre>
   );
 }
