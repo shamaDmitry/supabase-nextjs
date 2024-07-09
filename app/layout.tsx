@@ -2,6 +2,8 @@ import { Bricolage_Grotesque } from "next/font/google";
 import { Space_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
+import NextTopLoader from "nextjs-toploader";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -36,7 +38,11 @@ export default function RootLayout({
       <body
         className={cn("antialiased", fontHeading.variable, fontBody.variable)}
       >
+        <NextTopLoader color="hsl(200 100% 28%)" />
+
         {children}
+
+        <Toaster />
       </body>
     </html>
   );

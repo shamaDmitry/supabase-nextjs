@@ -26,15 +26,22 @@ export default async function Page() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  const userData = user?.user_metadata;
+
   return (
     <ProtectedRoute>
       <MainLayout>
         <div className="container">
-          <pre>{JSON.stringify(user, null, 2)}</pre>
-          <h1 className="text-3xl font-bold mb-6">Profile {user!.email}</h1>
+          <pre>{JSON.stringify(user?.user_metadata, null, 2)}</pre>
+
+          <h1 className="text-3xl font-bold mb-6">Profile {user?.email}</h1>
 
           <div className="grid grid-cols-2">
             <div>
+              <ProfileRow title="address" value={userData?.address} />
+              <ProfileRow title="email" value={userData?.email} />
+              <ProfileRow title="firstName" value={userData?.firstName} />
+              <ProfileRow title="lastName" value={userData?.lastName} />
               <ProfileRow title="phone" value={user?.phone} />
             </div>
 
